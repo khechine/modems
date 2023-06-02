@@ -1,0 +1,66 @@
+{% include 'modems/includes/header.html'%}
+
+{% load static%}
+<body>
+	<main class="d-flex w-100">
+		<div class="container d-flex flex-column">
+			<div class="row vh-100">
+				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+					<div class="d-table-cell align-middle">
+
+						<div class="text-center mt-4">
+							<p class="lead">
+							<img src="{% static '/images/topnet.png' %}"  class="d-inline-block align-top" alt="" loading="lazy">
+							</p>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<div class="m-sm-4">
+								 <div class="text-center">
+                                   <p class="lead">
+								Veuillez insérer vos paramètres de connexion
+							      </p>								
+								  	</div>
+									{% for message in messages %}
+                                    					<p id="messages">{{ message }}</p>
+                                   	 				{% endfor %}
+									<form method="POST" action="">
+									{% csrf_token %}
+										<div class="mb-3">
+											<label class="form-label">Nom d'utilisateur</label>
+											<input class="form-control form-control-lg" type="text" name="username" placeholder="Saisissez votre nom d'utilisateur" />
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Mot de passe</label>
+											<input class="form-control form-control-lg" type="password" name="password" placeholder="Saisissez votre mot de passe" />
+											
+										</div>
+										<div>
+											<label class="form-check">
+            										<input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked>
+            										<span class="form-check-label">
+              											Se souvenir de moi
+            										</span>
+          									</label>
+										</div>
+										<div class="text-center mt-3">
+										    <button type="submit" class="btn btn-lg btn-primary">Connexion</button>
+										</div>
+									</form>
+									
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<script src="js/app.js"></script>
+
+</body>
+{% include 'modems/includes/footer.html' %}
+</html>

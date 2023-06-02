@@ -1,0 +1,147 @@
+{% include 'modems/includes/header.html' %}
+
+<body>
+  <div class="wrapper">
+    {% include 'modems/navbar1.html' %}
+{% block content %}
+    <main class="content">
+      <div class="container-fluid p-0">
+        <h1 class="h3 mb-3">Consulter Modem</h1>
+        
+        <div class="col-md-12">
+
+                <div class="card p-3  py-4">
+
+                    <h5>Rechercher modems par N° de série</h5>
+
+                    <div class="row g-3 mt-2">
+
+                        <div class="col-md-3">
+
+                          
+                            
+                        </div>
+
+                        <div class="col-md-6">
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+                           
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <button class="btn btn-secondary btn-block">Rechercher</button>
+                          </form>     
+                        </div>
+                      </div>  
+                    </div>
+         <div class="col-12 col-lg-12 col-xxl-9 d-flex">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+
+                                    <h5 class="card-title mb-0">Liste des modems à configuer</h5>
+                                </div>
+                <div class="mb-3">
+                
+                                <table class="table table-sm">
+  <thead class="table-dark">
+    <tr>
+      <th class="d-none d-xl-table-cell"><small>Equipement</small></th>
+      <th class="d-none d-xl-table-cell"><small>Serial Number</small></th>
+      <th class="d-none d-xl-table-cell"><small> Login d'accés</small></th>
+      <th class="d-none d-xl-table-cell"><small>mot de passe d'accés</small></th>
+      <th class="d-none d-xl-table-cell"><small> Login Voip</small></th>
+      <th class="d-none d-xl-table-cell"><small>mot de passe Voip</small></th>
+      <th class="d-none d-md-table-cell"><small>Action</small></th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for modem in modems %}
+  <tr>
+    <td class="d-none d-xl-table-cell"><small>{{ modem.equipementName }}</small></td>
+    <td class="d-none d-xl-table-cell"><small>{{ modem.serialNumber }}</small></td>
+    <td class="d-none d-xl-table-cell"><small>{{ modem.loginParDefaut }}</small></td>
+    <td class="d-none d-xl-table-cell password-cell"><small>{{ modem.pwdParDefaut }}</small>
+    </td>
+    <td class="d-none d-xl-table-cell"><small>{{ modem.loginVoip }}</small></td>
+    <td class="d-none d-xl-table-cell password-cell"><small>{{ modem.pwdVoip }}</small>
+    </td>
+    <td>
+      <button type="button" class="btn btn-sm btn-info show-passwords-btn">Afficher</button>
+      <button type="button" class="btn btn-sm btn-secondary hide-passwords-btn hide">Masquer</button>
+    </td>
+  </tr>
+  {% empty %}
+    <tr>
+      <td colspan="7"><small>Aucun modem trouvé.</small></td>
+    </tr>
+{% endfor %}
+
+<style>
+.password-cell {
+  visibility: hidden;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('.show-passwords-btn').click(function() {
+    // Masquer tous les mots de passe par défaut et VoIP
+    $('.password-cell').css('visibility', 'hidden');
+    $('.hide-passwords-btn').addClass('d-none');
+
+    // Afficher uniquement le mot de passe pour cette ligne
+    var row = $(this).closest('tr');
+    row.find('.password-cell').css('visibility', 'visible');
+    row.find('.hide-passwords-btn').removeClass('d-none').show();
+  });
+
+  $('.hide-passwords-btn').click(function() {
+    var row = $(this).closest('tr');
+    row.find('.password-cell').css('visibility', 'hidden');
+    $(this).addClass('d-none');
+  });
+});
+</script>
+
+
+  </tbody>
+</table>
+
+</div>
+
+                            </div>
+                        </div>
+        
+          
+          
+      </div>
+
+
+
+
+    </main>
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row text-muted">
+          <div class="col-6 text-start">
+            <p class="mb-0">
+              <strong>TOPNET</strong> - &copy;
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+<script>
+$(document).ready(function() {
+  $('.select2').select2();
+});
+</script>
+</body>
+{% endblock %}
+{% include 'modems/includes/footer.html' %}

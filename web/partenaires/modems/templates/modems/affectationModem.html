@@ -1,0 +1,93 @@
+{% include 'modems/includes/header.html' %}
+
+<body>
+  {% block content %}
+  <div class="wrapper">
+    {% include 'modems/navbar1.html' %}
+    <main class="content">
+      <div class="container-fluid p-0">
+        <h1 class="h3 mb-3">Affectation Modem</h1>
+        <div class="row">
+          {% csrf_token %}
+          <div class="col-12 col-lg-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title mb-0">Affecter la référence TT au modem concerné</h5>
+              </div>
+              <div class="card-body">
+                {% if messages %}
+                <div class="messages">
+                  {% for message in messages %}
+                     {% if message.tags == 'success' %}
+                         <p class="text-success">{{ message }}</p>
+                     {% else %}
+                         <p class="text-danger">{{ message }}</p>
+                     {% endif %}
+                  {% endfor %}
+                </div>
+                {% endif %}
+                <form method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="nom_group" value="{{ request.user.groups.first.name }}">
+
+                  <p>{{ contrat_form.reference_contrat.label_tag }} {{ contrat_form.reference_contrat }}</p>
+                  <button type="submit" class="btn btn-sm btn-info" name="contrat_form_submit">Afficher contrat</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          {% if contrat_info %}
+          <div class="col-12 col-lg-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title mb-0">Informations client</h5>
+              </div>
+              <div class="card-body">
+                <h2>Informations du contrat</h2>
+                <p>Référence : {{ contrat_info.reference_contrat }}</p>
+                <p>Nom et Prénom: {{ contrat_info.nom_client }} {{ contrat_info.prenom_client }}</p>
+                <p>GSM : {{ contrat_info.gsm_client }}</p>
+                <form method="post">
+                 <input type="hidden" name="nom_agent" value="{{ request.user.username }}">
+                  <input type="hidden" name="ref_tt" value="{{ contrat_info.reference_contrat }}">
+                  {% csrf_token %}
+                  <p>{{ serial_number_form.serialNumber.label_tag }} {{ serial_number_form.serialNumber }}</p>
+                  <button type="submit" class="btn btn-sm btn-info" name="serial_number_form_submit">Affecter</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row text-muted">
+          <div class="col-6 text-start">
+            <p class="mb-0">
+              <strong>TOPNET</strong> - &copy;
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  {% endblock %}
+</body>
+
+{% load static %}
+
+
+<!-- Include jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  $('#id_reference_contrat').select2();
+});
+</script>
+
+{% include 'modems/includes/footer.html' %}

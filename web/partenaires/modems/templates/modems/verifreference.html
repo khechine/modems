@@ -1,0 +1,87 @@
+{% include 'modems/includes/header.html' %}
+
+<body>
+  <div class="wrapper">
+    {% include 'modems/navbar1.html' %}
+    {% block content %}
+    <main class="content">
+      <div class="container-fluid p-0">
+        <h1 class="h3 mb-3">Vérifier les références TT</h1>
+        <div class="col-12 col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Sélectionner un fichier CSV</h5>
+            </div>
+            <div class="card-body">
+              {% if success_message %}
+              <p class="text-success">{{ success_message }}</p>
+              {% endif %}
+
+              {% if error_message %}
+              <p class="text-danger">{{ error_message }}</p>
+              {% endif %}
+
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="csv_file" class="custom-file-label">Choisir un fichier CSV</label>
+                  <input class="form-control" type="file" id="csv_file" name="csv_file">
+                </div>
+                <button type="submit" class="btn btn-primary">Importer</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-9 col-xxl-9 d-flex">
+          <div class="card flex-fill">
+           <div class="card-header">
+      <h5 class="card-title mb-0">Liste des références</h5>
+    </div>
+
+    {% if existing_refs %}
+    <div class="card-body">
+      <h6>Références TOPNET :</h6>
+      <ul>
+        {% for reference in existing_refs %}
+        <li>{{ reference.reference_contrat }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if missing_refs %}
+    <div class="card-body">
+      <h6>Références autre FSI :</h6>
+      <ul>
+        {% for reference in missing_refs %}
+        <li>{{ reference }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <a href="{% url 'export_references_csv' %}">Exporter en CSV</a>
+    {% endif %}
+          </div>
+        </div>
+      </div>
+    </main>
+  
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var fileInput = document.getElementById('csv_file');
+      var fileLabel = document.querySelector('.custom-file-label');
+
+      fileInput.addEventListener('change', function() {
+        if (fileInput.files.length > 0) {
+          fileLabel.textContent = fileInput.files[0].name;
+        } else {
+          fileLabel.textContent = 'Choisir un fichier CSV';
+        }
+      });
+    });
+  </script>
+</body>
+
+{% endblock %}
+
+{% include 'modems/includes/footer.html' %}

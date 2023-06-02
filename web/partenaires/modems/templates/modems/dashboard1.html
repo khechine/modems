@@ -1,0 +1,418 @@
+{% include 'modems/includes/header.html' %}
+{% load static %}
+<body>
+  <div class="wrapper">
+    {% include 'modems/navbar1.html' %}
+{% block content %}
+    <main class="content">
+      <div class="container-fluid p-0">
+        <h1 class="h3 mb-3">Dashboard</h1>
+        
+        <div class="row">
+						<div class="col-xl-6 col-xxl-5 d-flex">
+							<div class="w-100">
+								<div class="row">
+									<div class="col-sm-6">
+                               {% for group in request.user.groups.all %}
+                                  {% if group.name != 'sotetelAgent' and group.name != 'snttAgent' and group.name != 'agenceMarsa' and group.name != 'agenceMourouj' and group.name != 'agenceSousse' %}
+
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems non paramétrés Voip</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/voip1.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_0 }}</h1>
+												
+											</div>
+										</div>
+
+                                  
+     
+
+    
+
+                                        <div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems Affectés SNTT</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/routeur3.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_5 }}</h1>
+												
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems Affectés au agence</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/store-3.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_6 }}</h1>
+												
+											</div>
+										</div>
+
+
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Modems configurés voip</h5>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															--><img src="{% static '/img/icons/voip.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+														<!--</div>-->
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_1 }}</h1>
+							
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Modems à livrés</h5>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														 <img src="{% static '/img/icons/livraison.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_2 }}</h1>
+												
+											</div>
+										</div>
+										 
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Modems affectés</h5>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox align-middle me-0"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>
+														</div>-->
+														<img src="{% static '/img/icons/routeur2.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_3 }}</h1>
+												
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems Affectés SOTETEL</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/routeur1.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_4 }}</h1>
+												
+											</div>
+										</div>
+										
+                                    {% endif %}
+                                     {% endfor %} 
+									 {% for group in request.user.groups.all %}
+                                  {% if group.name == 'sotetelAgent' %}
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems Affectés SOTETEL</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/routeur1.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_4 }}</h1>
+												
+											</div>
+										</div>
+										{% endif %}
+                                     {% endfor %} 
+									  {% for group in request.user.groups.all %}
+                                        {% if group.name == 'snttAgent' %}
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems Affectés SNTT</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/routeur1.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_5 }}</h1>
+												
+											</div>
+										</div>
+										{% endif %}
+                                     {% endfor %}
+
+                                    		 {% for group in request.user.groups.all %}
+                                  {% if group.name == 'agenceMarsa' %}
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems affectés à l'agence</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/store-3.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_7 }}</h1>
+												
+											</div>
+										</div>
+
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems attribués</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/routeur2.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_10 }}</h1>
+												
+											</div>
+										</div>
+										{% endif %}
+                                     {% endfor %} 
+
+
+									  {% for group in request.user.groups.all %}
+                                  {% if group.name == 'agenceMourouj' %}
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems affectés à l'agence</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/store-3.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_8 }}</h1>
+												
+											</div>
+										</div>
+
+
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems attribués</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/routeur2.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_11 }}</h1>
+												
+											</div>
+										</div>
+										{% endif %}
+                                     {% endfor %} 
+
+									  {% for group in request.user.groups.all %}
+                                  {% if group.name == 'agenceSousse' %}
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h6 class="card-title">Modems affectés à l'agence</h6>
+													</div>
+
+													<div class="col-auto">
+														<!--<div class="stat text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers align-middle me-0"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+														</div>-->
+														<img src="{% static '/img/icons/store-3.png' %}"  width="50px" class="d-inline-block align-top" alt="" loading="lazy">
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">{{ num_statut_4 }}</h1>
+												
+											</div>
+										</div>
+										{% endif %}
+                                     {% endfor %} 
+									 
+									</div>
+								</div>
+							</div>
+						</div>
+
+						 {% for group in request.user.groups.all %}
+                                  {% if group.name != 'sotetelAgent' and group.name != 'snttAgent' and group.name != 'agenceMarsa' and group.name != 'agenceMourouj' and group.name != 'agenceSousse' %}
+                        
+
+
+						
+						<div class="col-12 col-lg-6">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Affectation modems</h5>
+								</div>
+								<div class="card-body">
+									<div class="align-self-center w-100">
+										<div class="py-3">
+											<div class="chart chart-xs">
+												<canvas id="chartjs-dashboard-pie"></canvas>
+											</div>
+										</div>
+
+										<table class="table mb-0">
+											<tbody>
+												<tr>
+													<td>SOTETEL</td>
+													<td class="text-end">{{ num_statut_12 }}</td>
+												</tr>
+												<tr>
+													<td>SNTT</td>
+													<td class="text-end">{{ num_statut_13 }}</td>
+												</tr>
+												<tr>
+													<td>AGENCES</td>
+													<td class="text-end">{{ num_statut_14 }}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						{% endif %}
+                                     {% endfor %} 
+					</div>
+          
+        
+          
+          
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row text-muted">
+          <div class="col-6 text-start">
+            <p class="mb-0">
+              <strong>TOPNET</strong> - &copy;
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script>
+		document.addEventListener("DOMContentLoaded", function() {
+    // Récupérez les valeurs depuis la vue
+    var num_statut_12 = {{ num_statut_12 }}; // Remplacez {{ num_statut_7 }} par la valeur réelle de la variable récupérée depuis la vue
+    var num_statut_13 = {{ num_statut_13 }}; // Remplacez {{ num_statut_8 }} par la valeur réelle de la variable récupérée depuis la vue
+    var num_statut_14 = {{ num_statut_14 }}; // Remplacez {{ num_statut_11 }} par la valeur réelle de la variable récupérée depuis la vue
+
+    // Pie chart
+    new Chart(document.getElementById("chartjs-dashboard-pie"), {
+        type: "pie",
+        data: {
+            labels: ["SOTETEL", "SNTT", "Agences"],
+            datasets: [{
+                data: [num_statut_12, num_statut_13, num_statut_14],
+                backgroundColor: [
+                    window.theme.primary,
+                    window.theme.warning,
+                    window.theme.danger
+                ],
+                borderWidth: 5
+            }]
+        },
+        options: {
+            responsive: !window.MSInputMethodContext,
+            maintainAspectRatio: false,
+            legend: {
+                display: true
+            },
+            cutoutPercentage: 75
+        }
+    });
+});
+
+	</script>
+</body>
+{% endblock %}
+{% include 'modems/includes/footer.html' %}

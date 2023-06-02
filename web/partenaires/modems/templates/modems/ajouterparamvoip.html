@@ -1,0 +1,82 @@
+{% include 'modems/includes/header.html' %}
+
+<body>
+  <div class="wrapper">
+    {% include 'modems/navbar1.html' %}
+{% block content %}
+    <main class="content">
+      <div class="container-fluid p-0">
+        <h1 class="h3 mb-3">Modem à exporter</h1>
+        
+        
+         <div class="col-12 col-lg-12 col-xxl-9 d-flex">
+							<div class="card flex-fill">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Liste des modems</h5>
+								</div>
+								<table class="table table-hover my-0">
+    <thead  class="table-dark">
+        <tr>
+            <th><small>Equipement</small></th>
+            <th class="d-none d-xl-table-cell"><small>Numéro de série</small></th>
+            <th class="d-none d-xl-table-cell"><small>Nom d'utilisateur d'accés</small></th>
+            <th class="d-none d-xl-table-cell"><small>Mot de passe d'accés</small></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for modem in modems %}
+            <tr>
+                <td class="d-none d-xl-table-cell"><small>{{ modem.equipementName }}</small></td>
+                <td class="d-none d-xl-table-cell"><small>{{ modem.serialNumber }}</small></td>
+                <td class="d-none d-xl-table-cell"><small>{{ modem.loginParDefaut }}</small></td>
+                <td class="d-none d-xl-table-cell"><small>
+        <abbr title="{{ modem.pwdParDefaut }}">
+          {% for i in modem.pwdParDefaut %}•{% endfor %}
+        </abbr></small>
+      </td>
+            </tr>
+            
+        {% empty %}
+            <tr>
+                <td colspan="5">Aucun modem trouvé.</td>
+            </tr>
+        {% endfor %}
+    
+    {% csrf_token %}
+    
+<tr>
+            <td class="d-none d-xl-table-cell"  align="right" colspan="5">    <a href="{% url 'export_csv' %}" download>Exporter en CSV</a>
+            </td>
+            </tr>
+</tbody>
+</table>
+
+
+							</div>
+						</div>
+        
+          
+          
+      </div>
+
+
+
+
+    </main>
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row text-muted">
+          <div class="col-6 text-start">
+            <p class="mb-0">
+              <strong>TOPNET</strong> - &copy;
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+{% endblock %}
+{% include 'modems/includes/footer.html' %}

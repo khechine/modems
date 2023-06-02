@@ -1,0 +1,55 @@
+{% include 'modems/includes/header.html' %}
+
+<body>
+  <div class="wrapper">
+    {% include 'modems/navbar1.html' %}
+    {% block main_content %}
+    <main class="content">
+      <div class="container-fluid p-0">
+        <h1 class="h3 mb-3">Importer modems</h1>
+
+        <div class="col-12 col-lg-6">
+          <div class="card">
+              <div class="card-header">
+              <h5 class="card-title mb-0">Importer les modems configurés (Accés et Voip) </h5>
+            </div>
+            
+<div class="card-body">
+{% if error_message %}
+    <div class="alert alert-danger">{{ error_message }}</div>
+{% endif %}
+
+{% if success_message %}
+    <div class="alert alert-success">{{ success_message }}</div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="mb-3">
+    <input class="form-control" type="file" id="csv_file" name="csv_file">
+  </div>
+  <button type="submit" class="btn btn-primary">Importer</button>
+</form>
+</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row text-muted">
+          <div class="col-6 text-start">
+            <p class="mb-0">
+              <strong>TOPNET</strong> - &copy;
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  {% include 'modems/includes/footer.html' %}
+</body>
+
+{% endblock main_content %}

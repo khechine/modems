@@ -1,0 +1,241 @@
+{% load static%}
+
+<nav  id    = "sidebar" class      = "sidebar js-sidebar">
+<div  class = "sidebar-content js-simplebar">
+<a    class = "sidebar-brand" href = "index.html">
+<span class = "align-middle"><img src="{% static '/images/logo.png' %}"  width="200" class="d-inline-block align-top" alt="" loading="lazy">
+</span>
+        </a>
+
+
+				<ul class = "sidebar-nav">
+				<li class = "sidebar-header">
+						Menu
+					</li>
+<li class = "sidebar-item {% if request.path == '/dashboard1/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'dashboard1' %}">
+     <i  class = "align-middle" data-feather = "sliders"></i> <span class = "align-middle">Dashboard</span>
+            </a>
+					</li>
+
+{% if user.is_superuser %}
+
+
+        <li class="sidebar-item {% if request.path == '/alimentationModem/' %}active{% endif %}">
+            <a class="sidebar-link" href="{% url 'alimentationModem' %}">
+                <i class="align-middle" data-feather="square"></i> <span class="align-middle">Ajouter Modems</span>
+            </a>
+        </li>
+    
+
+
+     <li class = "sidebar-item {% if request.path == '/consulterModem/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'consulterModem' %}">
+     <i  class = "align-middle" data-feather = "check-square"></i> <span class = "align-middle">Consulter Modems</span>
+            </a>	
+   				</li>
+
+     <li class = "sidebar-item {% if request.path == '/affectationModem/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'affectationModem' %}">
+     <i  class = "align-middle" data-feather = "grid"></i> <span class = "align-middle">Affecter Modem</span>
+            </a>
+					</li>
+
+     <li class = "sidebar-item {% if request.path == '/ajouterparamvoip/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'ajouterparamvoip' %}">
+     <i  class = "align-middle" data-feather = "align-left"></i> <span class = "align-middle">Ajouter Paramétres VoIP</span>
+            </a>
+					</li>  
+     {% endif %}
+
+
+
+
+{% for group in request.user.groups.all %}
+    {% if group.name == 'stockAgent' %}
+       <li class="sidebar-item">
+    <a class="sidebar-link" data-bs-toggle="collapse" href="#gestionModems">
+        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Gestion modems</span>
+    </a>
+    <div id="gestionModems" class="collapse">
+        <ul class="sidebar-dropdown">
+            <li class="{% if request.path == '/alimentationModem/' %}active{% endif %}">
+                <a class="sidebar-link" href="{% url 'alimentationModem' %}">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Ajouter modems</span>
+                </a>
+            </li>
+            <li class="{% if request.path == '/consulterModem/' %}active{% endif %}">
+                <a class="sidebar-link" href="{% url 'consulterModem' %}">
+                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Consulter modems</span>
+                </a>
+            </li>
+            <li class="{% if request.path == '/attribuermodems/' %}active{% endif %}">
+                <a class="sidebar-link" href="{% url 'attribuermodems' %}">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Attribuer modems</span>
+                </a>
+            </li>
+            <li class="{% if request.path == '/attribuermodemslot/' %}active{% endif %}">
+                <a class="sidebar-link" href="{% url 'attribuermodemslot' %}">
+                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Attribuer modems par lot</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>       
+
+    {% endif %}
+{% endfor %}               
+{% for group in request.user.groups.all %}
+    {% if group.name == 'sotetelAgent' %}
+     <li class = "sidebar-item {% if request.path == '/affectationModem/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'affectationModem' %}">
+     <i  class = "align-middle" data-feather = "grid"></i> <span class = "align-middle">Affecter modem</span>
+            </a>
+					</li>
+
+
+     <li class = "sidebar-item {% if request.path == '/modemaffecte/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'modemaffecte' %}">
+     <i  class = "align-middle" data-feather = "grid"></i> <span class = "align-middle">Modems affectés</span>
+            </a>
+					</li> 
+
+             <li class = "sidebar-item {% if request.path == '/verifreference/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'verifreference' %}">
+     <i  class = "align-middle" data-feather = "grid"></i> <span class = "align-middle">Vérifier Référence TT</span>
+            </a>
+					</li>       
+
+    {% endif %}
+{% endfor %}
+
+{% for group in request.user.groups.all %}
+    {% if group.name == 'snttAgent' %}
+     <li class = "sidebar-item {% if request.path == '/affectationModem/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'affectationModem' %}">
+     <i  class = "align-middle" data-feather = "grid"></i> <span class = "align-middle">Affecter modem</span>
+            </a>
+					</li>
+
+
+
+     <li class = "sidebar-item {% if request.path == '/modemaffecte/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'modemaffecte' %}">
+     <i  class = "align-middle" data-feather = "grid"></i> <span class = "align-middle">Modems affectés</span>
+            </a>
+					</li>    
+
+                    <li class = "sidebar-item {% if request.path == '/verifreference/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'verifreference' %}">
+     <i  class = "align-middle" data-feather = "grid"></i> <span class = "align-middle">Vérifier Référence TT</span>
+            </a>
+					</li>                   
+    {% endif %}
+{% endfor %}
+
+{% for group in request.user.groups.all %}
+    {% if group.name == 'voipAgent' %}
+     <li class = "sidebar-item {% if request.path == '/ajouterparamvoip/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'ajouterparamvoip' %}">
+     <i  class = "align-middle" data-feather = "align-left"></i> <span class = "align-middle">Exporter Modems</span>
+            </a>
+					</li>  
+     {% endif %}
+{% endfor %}    
+
+{% for group in request.user.groups.all %}
+    {% if group.name == 'voipAgent' %}
+     <li class = "sidebar-item {% if request.path == '/importermodems/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'importermodems' %}">
+     <i  class = "align-middle" data-feather = "align-left"></i> <span class = "align-middle">Importer Modems</span>
+            </a>
+					</li>  
+     <li class = "sidebar-item {% if request.path == '/consultermodemsvoip/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'consultermodemsvoip' %}">
+     <i  class = "align-middle" data-feather = "align-left"></i> <span class = "align-middle">Modems configurés Voip</span>
+            </a>
+					</li>                
+     {% endif %}
+{% endfor %} 
+
+{% for group in request.user.groups.all %}
+{% if group.name == 'agenceMourouj' or group.name == 'agenceMarsa' or group.name == 'agenceSousse' %}     <li class = "sidebar-item {% if request.path == '/swapmodem/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'get_numacces' %}">
+     <i  class = "align-middle" data-feather = "align-left"></i> <span class = "align-middle">SWAP modem</span>
+            </a>
+					</li> 
+
+      <li class = "sidebar-item {% if request.path == '/consulternumparagence/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'consulternumparagence' %}">
+     <i  class = "align-middle" data-feather = "align-left"></i> <span class = "align-middle">consulter numéros reservé</span>
+            </a>
+					</li>                 
+                   
+     {% endif %}
+{% endfor %} 
+
+{% for group in request.user.groups.all %}
+    {% if group.name == 'intervention' %}
+     <li class = "sidebar-item {% if request.path == '/importernumero/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'importernumero' %}">
+     <i  class = "align-middle" data-feather = "align-left"></i> <span class = "align-middle">importer numéros</span>
+            </a>
+					</li>  
+
+    <li class = "sidebar-item {% if request.path == '/consulternumero/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'consulternumero' %}">
+     <i  class = "align-middle" data-feather = "align-left"></i> <span class = "align-middle">consulter numéros</span>
+            </a>
+					</li>  
+
+       <li class = "sidebar-item {% if request.path == '/consulterreferenceaffecte/' %}active{% endif %}">
+     <a  class = "sidebar-link" href         = "{% url 'consulterreferenceaffecte' %}">
+     <i  class = "align-middle" data-feather = "align-left"></i> <span class = "align-middle">modems affectés</span>
+            </a>
+					</li>               
+                   
+     {% endif %}
+{% endfor %} 
+
+   
+
+				
+			</div>
+		</nav>
+    
+  <div class = "main">
+  <nav class = "navbar navbar-expand navbar-light navbar-bg">
+  <a   class = "sidebar-toggle js-sidebar-toggle">
+  <i   class = "hamburger align-self-center"></i>
+        </a>
+
+				<div  class = "navbar-collapse collapse">
+				<ul   class = "navbar-nav navbar-align">
+				<li   class = "nav-item dropdown">
+				<a    class = "nav-icon dropdown-toggle" href = "#" id = "alertsDropdown" data-bs-toggle = "dropdown">
+				<div  class = "position-relative">
+				
+								</div>
+							</a>
+							<div class = "dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby = "alertsDropdown">
+							<div class = "dropdown-menu-header">
+									4 New Notifications
+								</div>
+							</div>
+						</li>
+						<li class = "nav-item dropdown">
+							
+
+       <a    class = "nav-link dropdown-toggle d-none d-sm-inline-block" href = "#" data-bs-toggle = "dropdown">
+       <span class = "navbar-text" style                                      = "align='right'">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user align-middle me-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        Bonjour {{request.user.username}} &nbsp;|
+                 </span>
+                 <span class = "navbar-text" style = "align='right'">
+                 <a    href  = "{% url 'logout' %}">Se déconnecter</a>
+                 </span>
+                     </a>
+						</li>
+					</ul>
+				</div>
+			</nav>
